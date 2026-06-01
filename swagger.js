@@ -23,8 +23,8 @@ const doc = {
     description: 'Secondary School Management System for Africa',
     version: '1.0.0'
   },
-  host: 'localhost:8080',
-  schemes: ['http']
+  host: 'cse341-edutrack-africa-api-final-project.onrender.com',
+  schemes: ['https']
 };
 
 const outputFile = './swagger.json';
