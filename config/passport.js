@@ -9,7 +9,8 @@ const ObjectId = require('mongodb').ObjectId;
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    proxy: true
   },
   async (accessToken, refreshToken, profile, done) => {
     try {
@@ -24,8 +25,7 @@ passport.use(new GoogleStrategy({
           lastName: profile.name.familyName,
           email: profile.emails[0].value,
           photo: profile.photos ? profile.photos[0].value : '',
-          role: 'teacher', // default role
-          createdAt: new Date()
+          role: 'teacher', 
         };
         const result = await db.collection('users').insertOne(user);
         user._id = result.insertedId;
