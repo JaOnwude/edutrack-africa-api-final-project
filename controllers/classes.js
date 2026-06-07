@@ -44,6 +44,12 @@ const createClass = async (req, res) => {
 };
 
 const updateClass = async (req, res) => {
+  /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Class object to update',
+      required: true,
+      schema: { $ref: '#/definitions/Class' }
+} */
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json('Must use a valid class id.');

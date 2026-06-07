@@ -47,6 +47,12 @@ const createTeacher = async (req, res) => {
 };
 
 const updateTeacher = async (req, res) => {
+  /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Teacher object to update',
+      required: true,
+      schema: { $ref: '#/definitions/Teacher' }
+} */
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json('Must use a valid teacher id.');

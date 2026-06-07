@@ -51,6 +51,12 @@ const createStudent = async (req, res) => {
 };
 
 const updateStudent = async (req, res) => {
+  /* #swagger.parameters['body'] = {
+        in: 'body',
+        description: 'Update student details',
+        required: true,
+        schema: { $ref: '#/definitions/Student' }
+  } */
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json('Must use a valid student id.');

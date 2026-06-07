@@ -49,6 +49,12 @@ const createResult = async (req, res) => {
 };
 
 const updateResult = async (req, res) => {
+  /* #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Result object to update',
+      required: true,
+      schema: { $ref: '#/definitions/Result' }
+} */
   try {
     if (!ObjectId.isValid(req.params.id)) {
       return res.status(400).json('Must use a valid result id.');

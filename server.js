@@ -8,9 +8,10 @@
 // const port = process.env.PORT || 8080;
 // const app = express();
 
-// // CORS
 // app.use(cors({
-//   origin: '*',
+//   origin: '*',                    
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
 //   credentials: true
 // }));
 
@@ -34,7 +35,9 @@
 // app.get('/', (req, res) => {
 //   res.json({
 //     message: "EduTrack Africa API is running successfully!",
-//     documentation: "/api-docs"
+//     version: "1.0",
+//     documentation: "/api-docs",
+//     login: "/auth/google"
 //   });
 // });
 
@@ -58,25 +61,31 @@ const mongodb = require('./db/connect');
 const port = process.env.PORT || 8080;
 const app = express();
 
+app.enable('trust proxy');
+
 app.use(cors({
-  origin: '*',                    
+  origin: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   credentials: true
 }));
 
-// Session
+app.use(bodyParser.json());
+
+
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 24 * 60 * 60 * 1000 }
+  cookie: { 
+    maxAge: 24 * 60 * 60 * 1000,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(bodyParser.json());
 
 // Routes
 app.use('/', require('./routes'));
