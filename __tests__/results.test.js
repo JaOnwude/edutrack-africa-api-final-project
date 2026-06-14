@@ -1,17 +1,18 @@
+
 const request = require('supertest');
 const app = require('../server');
 const mongodb = require('../db/connect');
 
 describe('Results API', () => {
 
-  beforeAll((done) => {
-    mongodb.initDb((err) => {
-      if (err) {
-        return done(err);
-      }
-      done();
+  beforeAll(async () => {
+    return new Promise((resolve, reject) => {
+      mongodb.initDb((err) => {
+        if (err) return reject(err);
+        resolve();
+      });
     });
-  });
+  }, 15000);
 
   afterAll(async () => {
     await mongodb.closeDb();

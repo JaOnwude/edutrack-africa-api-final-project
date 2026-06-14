@@ -4,17 +4,16 @@ const mongodb = require('../db/connect');
 
 describe('Students API', () => {
 
-  // Initializes DB before tests run
-  beforeAll((done) => {
-    mongodb.initDb((err) => {
-      if (err) {
-        return done(err);
-      }
-      done();
+  // Modern async/await syntax with an explicitly higher timeout threshold
+  beforeAll(async () => {
+    return new Promise((resolve, reject) => {
+      mongodb.initDb((err) => {
+        if (err) return reject(err);
+        resolve();
+      });
     });
-  });
+  }, 15000); 
 
-  // This part of the closes connection after tests finish so that Jest doesn't hang
   afterAll(async () => {
     await mongodb.closeDb();
   });

@@ -4,14 +4,14 @@ const mongodb = require('../db/connect');
 
 describe('Teachers API', () => {
 
-  beforeAll((done) => {
-    mongodb.initDb((err) => {
-      if (err) {
-        return done(err);
-      }
-      done();
+  beforeAll(async () => {
+    return new Promise((resolve, reject) => {
+      mongodb.initDb((err) => {
+        if (err) return reject(err);
+        resolve();
+      });
     });
-  });
+  }, 15000);
 
   afterAll(async () => {
     await mongodb.closeDb();

@@ -1,19 +1,3 @@
-// const express = require('express');
-// const router = express.Router();
-// const resultsController = require('../controllers/results');
-// const { isAuthenticated } = require('../middleware/auth');
-
-// // Public routes
-// router.get('/', resultsController.getAllResults);
-// router.get('/student/:studentId', resultsController.getResultsByStudent);
-
-// // Protected routes
-// router.post('/', isAuthenticated, resultsController.createResult);
-// router.put('/:id', isAuthenticated, resultsController.updateResult);
-// router.delete('/:id', isAuthenticated, resultsController.deleteResult);
-
-// module.exports = router;
-
 const express = require('express');
 const router = express.Router();
 const resultsController = require('../controllers/results');
