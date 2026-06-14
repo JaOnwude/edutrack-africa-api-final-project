@@ -6,7 +6,12 @@
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "swagger": "node ./swagger.js"
+    "swagger": "node ./swagger.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
   },
   "keywords": [],
   "author": "",
@@ -22,11 +27,13 @@
     "mongodb": "^7.2.0",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
+    "swagger-autogen": "^2.23.7",
     "swagger-ui-express": "^5.0.1",
-    "validatorjs": "^3.22.1",    
-    "swagger-autogen": "^2.23.7"
+    "validatorjs": "^3.22.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
